@@ -13,7 +13,7 @@ import { KDTreeVisualizer } from "./visualizer";
 import * as helper from './helper';
 import { KDTree } from './kdTree';
 
-var mesh = new THREE.Points(helper.createTree(), new THREE.PointsMaterial({
+var mesh = new THREE.Points(helper.createCube(), new THREE.PointsMaterial({
   color: 0x0000ff,
   size: 0.05,
 }));
@@ -21,7 +21,7 @@ var mesh = new THREE.Points(helper.createTree(), new THREE.PointsMaterial({
 mesh.geometry.computeBoundingBox();
 
 let k = 3;
-let showKdTree = false;
+let showKdTree = true;
 let kdTree = new KDTree(mesh, 3)
 console.log(mesh,'mesh');
 
@@ -45,9 +45,9 @@ enum Models {
 class Settings extends utils.Callbackable{
   // different setting types are possible (e.g. string, enum, number, boolean, function)
   name: string = "Basic";
-  model: Models = Models.tree;
+  model: Models = Models.cube;
   scale: number = 1;
-  showKdTree: boolean = false;
+  showKdTree: boolean = true;
   k: number = 3;
 }
 
@@ -224,8 +224,8 @@ function main(){
   
   // create scene
   
-  scene.add(new THREE.GridHelper(10, 10))
-  scene.add(new THREE.AxesHelper(5));
+  // scene.add(new THREE.GridHelper(10, 10))
+  // scene.add(new THREE.AxesHelper(5));
   // user ./helper.ts for building the scene
   helper.setupLight(scene);
   scene.add(mesh);
